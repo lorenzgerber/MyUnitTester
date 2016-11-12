@@ -13,7 +13,7 @@ public class TestGui {
     private JPanel upperPanel;
     private JPanel middlePanel;
     private JPanel lowerPanel;
-    private JTextField selectedTest;
+    private JTextField selectedText;
     private JTextArea consoleOutput;
 
     public TestGui(String title){
@@ -21,9 +21,9 @@ public class TestGui {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-
-        upperPanel = buildUpperPanel();
+        
         middlePanel = buildMiddlePanel();
+        upperPanel = buildUpperPanel();
         lowerPanel = buildLowerPanel();
 
         frame.add(upperPanel, BorderLayout.NORTH);
@@ -66,9 +66,11 @@ public class TestGui {
     private JPanel buildUpperPanel(){
         upperPanel = new JPanel();
         upperPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        selectedTest = new JTextField(10);
+        selectedText = new JTextField("This is the real shit");
         runButton = new JButton("Run Tests");
-        upperPanel.add(selectedTest);
+        runButton.addActionListener(new ButtonListener(selectedText, consoleOutput));
+
+        upperPanel.add(selectedText);
         upperPanel.add(runButton);
         return upperPanel;
     }

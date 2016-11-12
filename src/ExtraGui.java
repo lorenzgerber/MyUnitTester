@@ -7,6 +7,7 @@ public class ExtraGui {
 	 
 	 public ExtraGui(String title){
 		 frame = new JFrame(title);
+		 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		 recta = new RectangleComponent();
 		 frame.add(recta);
 		 frame.setVisible(true);
