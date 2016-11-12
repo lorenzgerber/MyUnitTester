@@ -7,7 +7,7 @@ public class TestGuiMain {
         SwingUtilities.invokeLater(new Runnable(){
             @Override
             public void run(){
-                TestGui gui = new TestGui("Test");
+                ExtraGui gui = new ExtraGui("Test");
                 gui.show();
 
             }
