@@ -16,6 +16,32 @@ public class UnitTester {
 	}
 	
 	
+	public boolean runTestClass(){
+		return true;
+	}
+	
+	public boolean verifyTestClass(){
+		
+		
+		return true;
+	}
+	
+	public boolean runSingleTest(){
+		return true;
+	}
+	
+	public boolean setUp(){
+		return true;
+	}
+	
+	public boolean tearDown(){
+		return true;
+	}
+	
+	
+	
+	
+	
 	
 
 }
