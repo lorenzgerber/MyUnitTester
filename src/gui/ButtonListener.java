@@ -1,3 +1,4 @@
+package gui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,7 +18,7 @@ public class ButtonListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		this.textField.setText("this is the shit");
-		this.textArea.append("the real shit");
+		this.textArea.append("the real shit\n");
 		//System.out.println(textField.getText());
 	}
 

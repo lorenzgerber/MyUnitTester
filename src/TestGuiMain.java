@@ -1,5 +1,7 @@
 import javax.swing.SwingUtilities;
 
+import gui.TestGui;
+
 public class TestGuiMain {
 
     public static void main(String args[]){

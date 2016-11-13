@@ -1,9 +1,14 @@
+package gui;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
 import javax.swing.*;
 
 public class TestGui {
+	
+	private static final int FRAME_WIDTH = 400;
+	private static final int FRAME_HEIGHT = 400;
+	
     private JFrame frame;
     private JMenuBar menuBar;
     private JMenu menu;
@@ -15,6 +20,7 @@ public class TestGui {
     private JPanel lowerPanel;
     private JTextField selectedText;
     private JTextArea consoleOutput;
+    private JScrollPane scrollPane;
 
     public TestGui(String title){
         frame = new JFrame(title);
@@ -42,7 +48,7 @@ public class TestGui {
     }
 
     public void show(){
-        frame.setSize(400, 400);
+        frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         frame.setVisible(true);
     }
 
@@ -58,7 +64,13 @@ public class TestGui {
         middlePanel = new JPanel();
         middlePanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         consoleOutput = new JTextArea(20,30);
-        middlePanel.add(consoleOutput);
+        consoleOutput.setLineWrap(true);
+        consoleOutput.setEditable(false);
+        scrollPane = new JScrollPane(consoleOutput);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        middlePanel.add(scrollPane);
+        
 
         return middlePanel;
     }
