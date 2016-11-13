@@ -1,17 +1,23 @@
 
 
 public class mainTester {
-	
-	public static void main (String args[]){
+    
+    
+    
+    public static void main (String args[]){
 		
-		try {
-			UnitTester test = new UnitTester("Test1");
-			System.out.println("what the heck");
+	try {
+	    UnitTester test = new UnitTester("Test1");	
+	    System.out.println("what the heck");
+	    test.verifyTestClass();
+	    test.runTestClass();
+	} catch (ClassNotFoundException e) {
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();	
+	}
+		
+	
 		
 		
 		
