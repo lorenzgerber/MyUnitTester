@@ -1,6 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.PrintStream;
+import java.util.ArrayList;
 
 import gui.UserInterface;
 
@@ -34,11 +35,13 @@ public class MyUnitTestController {
     }
     	
     protected void runButtonPressed() {
+	ArrayList<String> messages = new ArrayList<String>();
 	
+	/*
 	PrintStream redirect = new PrintStream(
                 new StreamRedirect(gui.getTextArea()));
 	System.setOut(redirect);
-	
+	*/
 	
 	
 	try {
@@ -48,7 +51,10 @@ public class MyUnitTestController {
 	}
 	
 	tester.verifyTestClass();
-	tester.runTestClass();
+	messages = tester.runTestClass();
+	for(String element : messages){
+	    gui.getTextArea().append(element);  
+	}
 	
     }
     

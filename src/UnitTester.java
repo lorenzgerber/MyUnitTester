@@ -1,5 +1,6 @@
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 public class UnitTester {
 
@@ -9,6 +10,7 @@ public class UnitTester {
     private Class<?>[] testClassInterfaces;
     private boolean hasSetUp = false;
     private boolean hasTearDown = false;
+    private ArrayList<String> messages = new ArrayList<String>();
 
     UnitTester(String className) throws ClassNotFoundException {
 	classToTest = Class.forName(className);
@@ -16,16 +18,16 @@ public class UnitTester {
 	testClassMethods = classToTest.getMethods();
     }
 
-    public boolean runTestClass() {
+    public ArrayList<String> runTestClass() {
 	try {
 	    classInstance = classToTest.newInstance();
 	} catch (Exception e) {
-	    System.out.println("Could not instantiate class to be tested.");
-	    System.out.println(e.getCause().toString());
+	    messages.add("Could not instantiate class to be tested.\n");
+	    messages.add(e.getCause().toString()+"\n");
 	}
 	
 	for(int i = 0; i < testClassMethods.length; i++){
-	    
+	
 	    if(testClassMethods[i].getName().contains("test") 
 		    && testClassMethods[i].getReturnType() == boolean.class){
 		
@@ -35,13 +37,13 @@ public class UnitTester {
 		
 		try {
 			if((boolean) classToTest.getMethod(testClassMethods[i].getName()).invoke(classInstance)) {
-			    System.out.println("Success");
+			    messages.add("Success\n");			 
 			} else {
-			    System.out.println("Failed");			    
+			    messages.add("Failed\n");		    
 			}
 		    } catch (Exception e) {
-			System.out.println("Failed: could not invoke \""+testClassMethods[i].getName()+"\":");
-			System.out.println(e.getCause().toString());
+			messages.add("Failed: \""+testClassMethods[i].getName()+"\":\n");
+			messages.add(e.getCause().toString()+"\n");
 		    }
 		
 		if(hasTearDown){
@@ -51,12 +53,7 @@ public class UnitTester {
 	    }
 	}
 	
-
-	
-	
-	
-	
-	return true;
+	return messages;
     }
 
     public boolean verifyTestClass() {
@@ -76,7 +73,7 @@ public class UnitTester {
 	        hasZeroArgConstructor = true;
 	    }
 	} catch (NoSuchMethodException e) {
-	    System.out.println("class to be tested has no zero arg constructor");
+	    messages.add("Class to be tested has no zero argument constructor.\n");
 	}
 	
 	if(implementsTestClass && hasZeroArgConstructor){
@@ -102,8 +99,8 @@ public class UnitTester {
 	try {
 	    classToTest.getMethod("setUp").invoke(classInstance);
 	} catch (Exception e) {
-	    System.out.println("setUp method Failed!");
-	    System.out.println(e.getCause().toString());
+	    messages.add("Set up method failed.\n");
+	    messages.add(e.getCause().toString()+"\n");
 	} 
     }
 
@@ -111,8 +108,8 @@ public class UnitTester {
 	try {
 	    classToTest.getMethod("tearDown").invoke(classInstance);
 	} catch (Exception e) {
-	    System.out.println("teardown method failed.");
-	    System.out.println(e.getCause().toString());
+	    messages.add("Tear down method failed.\n");
+	    messages.add(e.getCause().toString()+"\n");
 	}
     }
 
