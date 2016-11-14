@@ -2,8 +2,6 @@
 
 public class mainTester {
     
-    
-    
     public static void main (String args[]){
 		
 	try {
@@ -16,13 +14,5 @@ public class mainTester {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();	
 	}
-		
-	
-		
-		
-		
-		
-		
-	}
-
+    }
 }
