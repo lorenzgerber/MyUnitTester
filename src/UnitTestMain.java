@@ -1,6 +1,7 @@
 import javax.swing.SwingUtilities;
 
-import gui.UnitTestGui;
+import controller.UnitTestController;
+import view.UnitTestGui;
 
 public class UnitTestMain {
 

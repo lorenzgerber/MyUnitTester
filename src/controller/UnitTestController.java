@@ -1,8 +1,10 @@
+package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import gui.UnitTestGui;
+import model.UnitTest;
+import view.UnitTestGui;
 
 public class UnitTestController {
     

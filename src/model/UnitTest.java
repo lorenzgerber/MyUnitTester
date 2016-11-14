@@ -1,3 +1,4 @@
+package model;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ public class UnitTest {
     private boolean hasTearDown = false;
     private ArrayList<String> messages = new ArrayList<String>();
 
-    UnitTest(String className) throws ClassNotFoundException {
+    public UnitTest(String className) throws ClassNotFoundException {
 	classToTest = Class.forName(className);
 	testClassInterfaces = classToTest.getInterfaces();
 	testClassMethods = classToTest.getMethods();
