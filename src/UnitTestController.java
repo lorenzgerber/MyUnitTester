@@ -1,24 +1,22 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.PrintStream;
 import java.util.ArrayList;
 
-import gui.UserInterface;
+import gui.UnitTestGui;
 
-public class MyUnitTestController {
+public class UnitTestController {
     
-    private UserInterface gui;
-    private UnitTester tester;
+    private UnitTestGui gui;
+    private UnitTest tester;
     
-    public MyUnitTestController(UserInterface gui){
+    public UnitTestController(UnitTestGui gui){
 	this.gui = gui;
 	
 	
 	gui.getRunButton().addActionListener(new ActionListener() {
 	    
 	    public void actionPerformed(ActionEvent e){
-		runButtonPressed();
-		
+		runButtonPressed();	
 	    }
 	    
 	});
@@ -36,16 +34,10 @@ public class MyUnitTestController {
     	
     protected void runButtonPressed() {
 	ArrayList<String> messages = new ArrayList<String>();
-	
-	/*
-	PrintStream redirect = new PrintStream(
-                new StreamRedirect(gui.getTextArea()));
-	System.setOut(redirect);
-	*/
-	
-	
+
+		
 	try {
-	    tester = new UnitTester(gui.getTextField().getText());
+	    tester = new UnitTest(gui.getTextField().getText());
 	} catch (ClassNotFoundException e) {
 	    System.out.println("this test does not exist");
 	}

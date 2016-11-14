@@ -4,7 +4,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.*;
 
-public class UserInterface {
+public class UnitTestGui {
 	
 	private static final int FRAME_WIDTH = 400;
 	private static final int FRAME_HEIGHT = 400;
@@ -19,7 +19,7 @@ public class UserInterface {
     private JTextArea consoleOutput;
     private JScrollPane scrollPane;
 
-    public UserInterface(String title){
+    public UnitTestGui(String title){
         frame = new JFrame(title);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

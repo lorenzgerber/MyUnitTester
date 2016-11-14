@@ -2,7 +2,7 @@
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
-public class UnitTester {
+public class UnitTest {
 
     protected Method[] testClassMethods;
     private Class<?> classToTest;
@@ -12,7 +12,7 @@ public class UnitTester {
     private boolean hasTearDown = false;
     private ArrayList<String> messages = new ArrayList<String>();
 
-    UnitTester(String className) throws ClassNotFoundException {
+    UnitTest(String className) throws ClassNotFoundException {
 	classToTest = Class.forName(className);
 	testClassInterfaces = classToTest.getInterfaces();
 	testClassMethods = classToTest.getMethods();

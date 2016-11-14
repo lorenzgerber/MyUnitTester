@@ -1,17 +1,17 @@
 import javax.swing.SwingUtilities;
 
-import gui.UserInterface;
+import gui.UnitTestGui;
 
-public class TestGuiMain {
+public class UnitTestMain {
 
     public static void main(String args[]){
 
         SwingUtilities.invokeLater(new Runnable(){
             @Override
             public void run(){
-                UserInterface gui = new UserInterface("MyUnitTester");
+                UnitTestGui gui = new UnitTestGui("MyUnitTester");
                 gui.show();
-                new MyUnitTestController(gui);
+                new UnitTestController(gui);
             }
         });
 
