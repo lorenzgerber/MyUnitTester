@@ -1,5 +1,4 @@
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class UnitTester {
@@ -25,14 +24,14 @@ public class UnitTester {
 	    System.out.println(e.getCause().toString());
 	}
 	
-	if(hasSetUp){
-	    this.setUp();
-	}
-	
 	for(int i = 0; i < testClassMethods.length; i++){
 	    
 	    if(testClassMethods[i].getName().contains("test") 
 		    && testClassMethods[i].getReturnType() == boolean.class){
+		
+		if(hasSetUp){
+		    this.setUp();
+		}
 		
 		try {
 			if((boolean) classToTest.getMethod(testClassMethods[i].getName()).invoke(classInstance)) {
@@ -44,12 +43,15 @@ public class UnitTester {
 			System.out.println("Failed: could not invoke \""+testClassMethods[i].getName()+"\":");
 			System.out.println(e.getCause().toString());
 		    }
+		
+		if(hasTearDown){
+		    this.tearDown();
+		}
+		
 	    }
 	}
 	
-	if(hasTearDown){
-	    this.tearDown();
-	}
+
 	
 	
 	

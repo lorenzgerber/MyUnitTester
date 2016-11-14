@@ -4,15 +4,12 @@ import java.awt.FlowLayout;
 
 import javax.swing.*;
 
-public class TestGui {
+public class UserInterface {
 	
 	private static final int FRAME_WIDTH = 400;
 	private static final int FRAME_HEIGHT = 400;
 	
     private JFrame frame;
-    private JMenuBar menuBar;
-    private JMenu menu;
-    private JMenuItem menuItem;
     private JButton runButton;
     private JButton clearButton;
     private JPanel upperPanel;
@@ -22,7 +19,7 @@ public class TestGui {
     private JTextArea consoleOutput;
     private JScrollPane scrollPane;
 
-    public TestGui(String title){
+    public UserInterface(String title){
         frame = new JFrame(title);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -35,14 +32,6 @@ public class TestGui {
         frame.add(upperPanel, BorderLayout.NORTH);
         frame.add(middlePanel, BorderLayout.CENTER);
         frame.add(lowerPanel,  BorderLayout.SOUTH);
-
-
-        menuBar = new JMenuBar();
-        menu = new JMenu("File");
-        menuBar.add(menu);
-        menuItem = new JMenuItem("Open new Class");
-        menu.add(menuItem);
-        frame.setJMenuBar(menuBar);
 
         frame.pack();
     }
@@ -78,13 +67,29 @@ public class TestGui {
     private JPanel buildUpperPanel(){
         upperPanel = new JPanel();
         upperPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        selectedText = new JTextField("This is the real shit");
+        selectedText = new JTextField("Test1", 20);
         runButton = new JButton("Run Tests");
-        runButton.addActionListener(new ButtonListener(selectedText, consoleOutput));
 
         upperPanel.add(selectedText);
         upperPanel.add(runButton);
         return upperPanel;
     }
+    
+    public JButton getRunButton(){
+	return this.runButton;
+    }
+    
+    public JButton getClearButton(){
+	return this.clearButton;
+    }
+    
+    public JTextField getTextField(){
+	return this.selectedText;
+    }
+    
+    public JTextArea getTextArea() {
+	return this.consoleOutput;
+    }
+
 
 }

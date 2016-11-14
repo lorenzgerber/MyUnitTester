@@ -1,6 +1,6 @@
 import javax.swing.SwingUtilities;
 
-import gui.TestGui;
+import gui.UserInterface;
 
 public class TestGuiMain {
 
@@ -9,9 +9,9 @@ public class TestGuiMain {
         SwingUtilities.invokeLater(new Runnable(){
             @Override
             public void run(){
-                TestGui gui = new TestGui("Test");
+                UserInterface gui = new UserInterface("MyUnitTester");
                 gui.show();
-
+                new MyUnitTestController(gui);
             }
         });
 
