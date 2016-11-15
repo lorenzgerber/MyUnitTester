@@ -27,7 +27,15 @@ import view.UnitTestGui;
 
 /**
  * 
+ * UnitTestController
+ * 
+ * This class coordinates the work in the UnitTest application.
+ * In the constructor it takes the gui object as argument.
+ * The class mainly contains code that links the model with
+ * the view.
+ * 
  * @author Lorenz Gerber
+ * @version 1.0
  *
  */
 public class UnitTestController {
@@ -35,6 +43,16 @@ public class UnitTestController {
     private UnitTestGui gui;
     private UnitTest tester;
 
+    /**
+     * UnitTestController
+     * 
+     * This class binds model and view together. It
+     * contains the EventListener that connect to the gui
+     * and it instantiates a UnitTest class when testing
+     * is initiated.
+     * 
+     * @param gui instance of UnitTestGui
+     */
     public UnitTestController(UnitTestGui gui) {
 	this.gui = gui;
 
@@ -56,6 +74,14 @@ public class UnitTestController {
 
     }
 
+    /**
+     * runButtonPressed
+     * 
+     * This method instantiates a UnitTest object, and commands
+     * verification, and testing of the method received from the
+     * graphical user interface.
+     * 
+     */
     protected void runButtonPressed() {
 	ArrayList<String> messages = new ArrayList<String>();
 

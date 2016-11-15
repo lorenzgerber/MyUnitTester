@@ -23,7 +23,16 @@ import java.util.ArrayList;
 
 /**
  * 
+ * UnitTest is a lightweight unit test framework
+ * 
+ * UnitTest takes the name of a test class as constructor
+ * argument. The class contains various methods to first
+ * verify the validity of the test class and then to run it.
+ * Test result are collected and returned when all tests have
+ * been run.
+ * 
  * @author Lorenz Gerber
+ * @version 1.0
  *
  */
 public class UnitTest {
@@ -37,12 +46,21 @@ public class UnitTest {
     private boolean hasTearDown = false;
     private ArrayList<String> messages = new ArrayList<String>();
 
+    /**
+     * 
+     * @param className
+     * @throws ClassNotFoundException
+     */
     public UnitTest(String className) throws ClassNotFoundException {
 	classToTest = Class.forName(className);
 	testClassInterfaces = classToTest.getInterfaces();
 	testClassMethods = classToTest.getMethods();
     }
 
+    /**
+     * 
+     * @return
+     */
     public ArrayList<String> runTestClass() {
 	try {
 	    classInstance = classToTest.newInstance();
@@ -81,8 +99,11 @@ public class UnitTest {
 	return messages;
     }
 
+    /**
+     * 
+     * @return
+     */
     public ArrayList<String> verifyTestClass() {
-	ArrayList<String> messages = new ArrayList<String>();
 
 	boolean implementsTestClass = false;
 	boolean hasZeroArgConstructor = false;
@@ -118,6 +139,14 @@ public class UnitTest {
 	return messages;
     }
 
+    /**
+     * setUp Method
+     * 
+     * The setUp method is called when needed from the runTest
+     * method. If the setUp method fails, the cause is added
+     * to the message buffer.
+     * 
+     */
     public void setUp() {
 	try {
 	    classToTest.getMethod("setUp").invoke(classInstance);
@@ -127,6 +156,15 @@ public class UnitTest {
 	}
     }
 
+    /**
+     * 
+     * tearDown Method
+     * 
+     * The tearDown method is called when needed from the runTest
+     * method. If the tearDown method fails, the cause is added
+     * to the message buffer.
+     * 
+     */
     public void tearDown() {
 	try {
 	    classToTest.getMethod("tearDown").invoke(classInstance);

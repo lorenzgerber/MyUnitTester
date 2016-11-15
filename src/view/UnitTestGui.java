@@ -24,7 +24,7 @@ import java.awt.FlowLayout;
 import javax.swing.*;
 /**
  * 
- * @author lgerber
+ * @author Lorenz Gerber
  *
  */
 public class UnitTestGui {
@@ -42,6 +42,10 @@ public class UnitTestGui {
     private JTextArea consoleOutput;
     private JScrollPane scrollPane;
 
+    /**
+     * 
+     * @param title
+     */
     public UnitTestGui(String title) {
 	frame = new JFrame(title);
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,11 +61,18 @@ public class UnitTestGui {
 	frame.pack();
     }
 
+    /**
+     * 
+     */
     public void show() {
 	frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 	frame.setVisible(true);
     }
 
+    /**
+     * 
+     * @return
+     */
     private JPanel buildLowerPanel() {
 	lowerPanel = new JPanel();
 	lowerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -70,6 +81,10 @@ public class UnitTestGui {
 	return lowerPanel;
     }
 
+    /**
+     * 
+     * @return
+     */
     private JPanel buildMiddlePanel() {
 	middlePanel = new JPanel();
 	middlePanel.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -86,6 +101,10 @@ public class UnitTestGui {
 	return middlePanel;
     }
 
+    /**
+     * 
+     * @return
+     */
     private JPanel buildUpperPanel() {
 	upperPanel = new JPanel();
 	upperPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -97,18 +116,34 @@ public class UnitTestGui {
 	return upperPanel;
     }
 
+    /**
+     * 
+     * @return
+     */
     public JButton getRunButton() {
 	return this.runButton;
     }
 
+    /**
+     * 
+     * @return
+     */
     public JButton getClearButton() {
 	return this.clearButton;
     }
 
+    /**
+     * 
+     * @return
+     */
     public JTextField getTextField() {
 	return this.selectedText;
     }
 
+    /**
+     * 
+     * @return
+     */
     public JTextArea getTextArea() {
 	return this.consoleOutput;
     }

@@ -16,6 +16,19 @@
  * along with UnitTest.  If not, see <http://www.gnu.org/licenses/>.
  * 
  */
+
+/**
+ * 
+ * BankAccount is a dummy class to be used with UnitTest
+ * 
+ * This class is used to be tested in the UnitTest application. 
+ * There is an implememted test class 'AccountTest' that tests
+ * this class. 
+ * 
+ * @author Lorenz Gerber
+ * @versuib 1.0
+ *
+ */
 public class BankAccount {
 
     private int balance;

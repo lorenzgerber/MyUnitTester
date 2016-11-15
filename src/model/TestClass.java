@@ -20,7 +20,11 @@ package model;
 
 /**
  * 
- * @author Lorenz Gerber
+ * TestClass interface
+ * 
+ * This interface has to be implemented by test classes
+ * of the UnitTest application. This was given from the
+ * assignment specifications.
  *
  */
 public interface TestClass {

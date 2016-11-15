@@ -20,7 +20,13 @@ import model.TestClass;
 
 /**
  * 
+ * AccountTest is a test class testing the dummy class BankAccount
+ * 
+ * This class is to be used in the UnitTest application. It contains
+ * six tests to be executed on the BankAccount class. 
+ * 
  * @author Lorenz Gerber
+ * @version 1.0
  *
  */
 public class AccountTest implements TestClass {
