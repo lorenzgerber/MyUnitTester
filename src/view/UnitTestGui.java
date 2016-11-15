@@ -89,7 +89,7 @@ public class UnitTestGui {
     private JPanel buildUpperPanel() {
 	upperPanel = new JPanel();
 	upperPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-	selectedText = new JTextField("Test1", 20);
+	selectedText = new JTextField("AccountTest", 20);
 	runButton = new JButton("Run Tests");
 
 	upperPanel.add(selectedText);
