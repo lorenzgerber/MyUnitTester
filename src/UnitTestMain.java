@@ -1,3 +1,4 @@
+
 /*
  * 
  * This file is part of UnitTest.
@@ -23,8 +24,8 @@ import view.UnitTestGui;
 /**
  * UnitTestMain
  * 
- * This file contains a main method to run the java class 
- * UnitTest with a graphical user interface. 
+ * This file contains a main method to run the java class UnitTest with a
+ * graphical user interface.
  * 
  * @author Lorenz Gerber
  * @version 1.0
@@ -39,12 +40,12 @@ public class UnitTestMain {
 	    public void run() {
 		UnitTestGui gui = new UnitTestGui("MyUnitTester");
 		gui.show();
-		try{
-			new UnitTestController(gui);
-		}catch(Exception e){
-			System.out.println("Houston we got a problem");
+		try {
+		    new UnitTestController(gui);
+		} catch (Exception e) {
+		    System.out.println("Houston we got a problem");
 		}
-		
+
 	    }
 	});
     }

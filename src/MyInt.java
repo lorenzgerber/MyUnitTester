@@ -21,8 +21,8 @@
  * 
  * MyInt is a dummy class used for testing in UnitTest
  * 
- * This class was given in the assignment specifications. There
- * is an implemented test class 'Test1' that tests this class. 
+ * This class was given in the assignment specifications. There is an
+ * implemented test class 'Test1' that tests this class.
  * 
  */
 public class MyInt {

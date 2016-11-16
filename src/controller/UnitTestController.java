@@ -29,115 +29,109 @@ import view.UnitTestGui;
  * 
  * UnitTestController
  * 
- * This class coordinates the work in the UnitTest application.
- * In the constructor it takes the gui object as argument.
- * The class mainly contains code that links the model with
- * the view.
+ * This class coordinates the work in the UnitTest application. In the
+ * constructor it takes the gui object as argument. The class mainly contains
+ * code that links the model with the view.
  * 
  * @author Lorenz Gerber
  * @version 1.0
  *
  */
 public class UnitTestController {
-	
+
     private UnitTestGui gui;
     private UnitTest tester;
 
     /**
      * UnitTestController
      * 
-     * This class binds model and view together. It
-     * contains the EventListener that connect to the gui
-     * and it instantiates a UnitTest class when testing
+     * This class binds model and view together. It contains the EventListener
+     * that connect to the gui and it instantiates a UnitTest class when testing
      * is initiated.
      * 
-     * @param gui instance of UnitTestGui
+     * @param gui
+     *            instance of UnitTestGui
      */
     public UnitTestController(UnitTestGui gui) {
-    	this.gui = gui;
-    	
-    	gui.getRunButton().addActionListener(new ActionListener() {
-    		
-    		public void actionPerformed(ActionEvent e) {
-    			runButtonPressed();	
-    		}
-    		
-    	});
+	this.gui = gui;
 
-	
-    	gui.getClearButton().addActionListener(new ActionListener() {
-    		public void actionPerformed(ActionEvent e) {
-    			clearButtonPressed();
-    			}
-    		});	
+	gui.getRunButton().addActionListener(new ActionListener() {
+
+	    public void actionPerformed(ActionEvent e) {
+		runButtonPressed();
+	    }
+
+	});
+
+	gui.getClearButton().addActionListener(new ActionListener() {
+	    public void actionPerformed(ActionEvent e) {
+		clearButtonPressed();
+	    }
+	});
     }
 
     /**
      * runButtonPressed
      * 
-     * This method instantiates a UnitTest object, and invokes
-     * verification, and testing using the test class received from the
-     * graphical user interface.
+     * This method instantiates a UnitTest object, and invokes verification, and
+     * testing using the test class received from the graphical user interface.
      * 
      */
     protected void runButtonPressed() {
-    	ArrayList<String> messages = new ArrayList<String>();
-    	
-    	try {
-    		tester = new UnitTest(gui.getTextField().getText());
-    	} catch (ClassNotFoundException e) {    
-    		messages.add("This test does not exist.\n");	
-    	}
-	
-	
-    	if(!messages.isEmpty()){
-    		this.textOutput(messages);
-    		messages.clear();    
-    		return;
-	
-    	}
+	ArrayList<String> messages = new ArrayList<String>();
 
-	
-    	/* 
-    	 *  if verifyTestClass returns null, no error occurred,
-    	 *  hence the program continues
-    	 */
-    	messages = tester.verifyTestClass();
-	
-    	if(!messages.isEmpty()){
-    		this.textOutput(messages);
-    		messages.clear();
-    		return;
-    	}
-	
-    	messages = tester.runTestClass();
-    	this.textOutput(messages);
+	try {
+	    tester = new UnitTest(gui.getTextField().getText());
+	} catch (ClassNotFoundException e) {
+	    messages.add("This test does not exist.\n");
+	}
+
+	if (!messages.isEmpty()) {
+	    this.textOutput(messages);
+	    messages.clear();
+	    return;
+
+	}
+
+	/*
+	 * if verifyTestClass returns null, no error occurred, hence the program
+	 * continues
+	 */
+	messages = tester.verifyTestClass();
+
+	if (!messages.isEmpty()) {
+	    this.textOutput(messages);
+	    messages.clear();
+	    return;
+	}
+
+	messages = tester.runTestClass();
+	this.textOutput(messages);
     }
 
     /**
      * clearButtonPressed
      * 
-     * method that is called from the clearButton
-     * event handler. It sets the text in the gui 
-     * TextArea to null. 
+     * method that is called from the clearButton event handler. It sets the
+     * text in the gui TextArea to null.
      */
     protected void clearButtonPressed() {
 	gui.getTextArea().setText(null);
-	
+
     }
-    
+
     /**
      * 
      * textOutput
      * 
-     * Helper method to loop through the message ArrayList
-     * and write each entry to the gui's TextArea
+     * Helper method to loop through the message ArrayList and write each entry
+     * to the gui's TextArea
      * 
      */
-    protected void textOutput(ArrayList<String> messages){
-    	for (String element : messages) {
-    	    gui.getTextArea().append(element);
-    	}
+    protected void textOutput(ArrayList<String> messages) {
+	for (String element : messages) {
+	    gui.getTextArea().append(element);
+	}
     }
-    
+
 }

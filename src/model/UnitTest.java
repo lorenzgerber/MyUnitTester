@@ -25,10 +25,9 @@ import java.util.ArrayList;
  * 
  * UnitTest is a lightweight unit test framework
  * 
- * UnitTest takes the name of a test class as constructor
- * argument. The class contains various methods to first
- * verify the validity of the test class and then to run it.
- * Test result are collected and returned when all tests have
+ * UnitTest takes the name of a test class as constructor argument. The class
+ * contains various methods to first verify the validity of the test class and
+ * then to run it. Test result are collected and returned when all tests have
  * been run.
  * 
  * @author Lorenz Gerber
@@ -50,132 +49,129 @@ public class UnitTest {
      * 
      * UnitTest
      * 
-     * Constructor that takes the name of the test class
-     * as input argument. It throws an exception when
-     * the indicated class does not exist.
+     * Constructor that takes the name of the test class as input argument. It
+     * throws an exception when the indicated class does not exist.
      * 
      * @param className
      * @throws ClassNotFoundException
      */
     public UnitTest(String className) throws ClassNotFoundException {
-    	testClass = Class.forName(className);
-    	testClassInterfaces = testClass.getInterfaces();
-    	testClassMethods = testClass.getMethods();
+	testClass = Class.forName(className);
+	testClassInterfaces = testClass.getInterfaces();
+	testClassMethods = testClass.getMethods();
     }
-    
+
     /**
      * 
      * verifyTest
      * 
-     * Method that checks all preconditions in the
-     * Test Class such as that it implements the interface
-     * TestClass, that it has a zero argument constructor and
-     * whether the testClass has setup and/or teardown method/s.
-     * Any problems encountered are returned as text messages in
-     * an ArrayList. Missing setup or teardown methods will not
-     * result in any message as these are not mandatory for a
-     * TestClass.
+     * Method that checks all preconditions in the Test Class such as that it
+     * implements the interface TestClass, that it has a zero argument
+     * constructor and whether the testClass has setup and/or teardown method/s.
+     * Any problems encountered are returned as text messages in an ArrayList.
+     * Missing setup or teardown methods will not result in any message as these
+     * are not mandatory for a TestClass.
      * 
-     * @return ArrayList with occurred problems 
+     * @return ArrayList with occurred problems
      */
     public ArrayList<String> verifyTestClass() {
 
-    	boolean implementsTestClass = false;
-    	boolean hasZeroArgConstructor = false;
-    	
-    	for (int i = 0; i < testClassInterfaces.length; i++) {
-	    
-    		if (testClassInterfaces[i].getName().equals("TestClass")) {
-    			implementsTestClass = true;
-    		}	
-    	}
+	boolean implementsTestClass = false;
+	boolean hasZeroArgConstructor = false;
 
-    	try {
-    		if (testClass.getConstructor() != null) {
-    			hasZeroArgConstructor = true; 
-    		}
-	
-    	} catch (NoSuchMethodException e) {
-	    
-    		messages.add("Class to be tested has no zero argument constructor.\n");
-    	}
-    	if (implementsTestClass && hasZeroArgConstructor) {
-    		verified = true;
-    	}
-    	
-    	for (int i = 0; i < testClassMethods.length; i++) {
-    		if (testClassMethods[i].getName().equals("setUp")) {
-    			hasSetUp = true;	    
-    		}
+	for (int i = 0; i < testClassInterfaces.length; i++) {
 
-    		if (testClassMethods[i].getName().equals("tearDown")) {
-    			hasTearDown = true;
-    		}
-    	}
-    	return messages;
+	    if (testClassInterfaces[i].getName().equals("TestClass")) {
+		implementsTestClass = true;
+	    }
+	}
+
+	try {
+	    if (testClass.getConstructor() != null) {
+		hasZeroArgConstructor = true;
+	    }
+
+	} catch (NoSuchMethodException e) {
+
+	    messages.add(
+		    "Class to be tested has no zero argument constructor.\n");
+	}
+	if (implementsTestClass && hasZeroArgConstructor) {
+	    verified = true;
+	}
+
+	for (int i = 0; i < testClassMethods.length; i++) {
+	    if (testClassMethods[i].getName().equals("setUp")) {
+		hasSetUp = true;
+	    }
+
+	    if (testClassMethods[i].getName().equals("tearDown")) {
+		hasTearDown = true;
+	    }
+	}
+	return messages;
     }
-    
-    
 
     /**
      * runTestClass
      * 
-     * Method that runs the actual test class. Test results
-     * and eventual problems occured are stored in a string arrayList
-     * that is returned in the end of the method. If available in 
-     * the test class, setup and teardown methods are called before
-     * and after each single test.
+     * Method that runs the actual test class. Test results and eventual
+     * problems occured are stored in a string arrayList that is returned in the
+     * end of the method. If available in the test class, setup and teardown
+     * methods are called before and after each single test.
      * 
      * @return ArrayList<String> with test results
      */
     public ArrayList<String> runTestClass() {
-    	
-    	try {
-    		classInstance = testClass.newInstance();
-    	} catch (Exception e) {
-    		messages.add("Could not instantiate test class.\n");
-    		messages.add(e.getCause().toString() + "\n");
-    	}
-    	
-    	for (int i = 0; i < testClassMethods.length; i++) {
-    		
-    		if (testClassMethods[i].getName().contains("test")
-    				&& testClassMethods[i].getReturnType() == boolean.class) {
-    			
-    			if (hasSetUp) {
-    				this.setUp();
-    			}
-    			
-    			try {
-    				if ((boolean) testClass.getMethod(testClassMethods[i].getName()).invoke(classInstance)) {
-    					messages.add("Success: \"" + testClassMethods[i].getName() + "\"\n");
-    				} else {
-    					
-    					messages.add("Failed: \"" + testClassMethods[i].getName() + "\"\n");
-    				}
-    			} catch (Exception e) {
-    				
-    				messages.add("Failed: \"" + testClassMethods[i].getName() + "\":\n");
-    				messages.add(e.getCause().toString() + "\n");
-    			}
-    			
-    			if (hasTearDown) {
-    				this.tearDown();
-    			}
-    		}
-    	}
-    	
-    	return messages;
-    }
 
-    
+	try {
+	    classInstance = testClass.newInstance();
+	} catch (Exception e) {
+	    messages.add("Could not instantiate test class.\n");
+	    messages.add(e.getCause().toString() + "\n");
+	}
+
+	for (int i = 0; i < testClassMethods.length; i++) {
+
+	    if (testClassMethods[i].getName().contains("test")
+		    && testClassMethods[i].getReturnType() == boolean.class) {
+
+		if (hasSetUp) {
+		    this.setUp();
+		}
+
+		try {
+
+		    if ((boolean) testClass
+			    .getMethod(testClassMethods[i].getName())
+			    .invoke(classInstance)) {
+			messages.add("Success: \""
+				+ testClassMethods[i].getName() + "\"\n");
+		    } else {
+
+			messages.add("Failed: \""
+				+ testClassMethods[i].getName() + "\"\n");
+		    }
+		} catch (Exception e) {
+
+		    messages.add("Failed: \"" + testClassMethods[i].getName()
+			    + "\":\n");
+		    messages.add(e.getCause().toString() + "\n");
+		}
+
+		if (hasTearDown) {
+		    this.tearDown();
+		}
+	    }
+	}
+	return messages;
+    }
 
     /**
      * setUp Method
      * 
-     * The setUp method is called when needed from the runTest
-     * method. If the setUp method fails, the cause is added
-     * to the message buffer.
+     * The setUp method is called when needed from the runTest method. If the
+     * setUp method fails, the cause is added to the message buffer.
      * 
      */
     public void setUp() {
@@ -191,9 +187,8 @@ public class UnitTest {
      * 
      * tearDown Method
      * 
-     * The tearDown method is called when needed from the runTest
-     * method. If the tearDown method fails, the cause is added
-     * to the message buffer.
+     * The tearDown method is called when needed from the runTest method. If the
+     * tearDown method fails, the cause is added to the message buffer.
      * 
      */
     public void tearDown() {
@@ -204,5 +199,4 @@ public class UnitTest {
 	    messages.add(e.getCause().toString() + "\n");
 	}
     }
-
 }

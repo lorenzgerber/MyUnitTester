@@ -1,3 +1,4 @@
+
 /*
  * 
  * This file is part of UnitTest.
@@ -22,9 +23,8 @@ import model.TestClass;
  * 
  * Test1 is a test class to be used with UnitTest
  * 
- * This class was given from the assignment specifications.
- * It tests the MyInt class which was also given in the
- * lab assignment.
+ * This class was given from the assignment specifications. It tests the MyInt
+ * class which was also given in the lab assignment.
  * 
  */
 public class Test1 implements TestClass {

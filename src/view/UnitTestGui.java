@@ -22,6 +22,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
 import javax.swing.*;
+
 /**
  * 
  * @author Lorenz Gerber
@@ -92,10 +93,8 @@ public class UnitTestGui {
 	consoleOutput.setLineWrap(true);
 	consoleOutput.setEditable(false);
 	scrollPane = new JScrollPane(consoleOutput);
-	scrollPane.setHorizontalScrollBarPolicy(
-		ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-	scrollPane.setVerticalScrollBarPolicy(
-		ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+	scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+	scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 	middlePanel.add(scrollPane);
 
 	return middlePanel;
