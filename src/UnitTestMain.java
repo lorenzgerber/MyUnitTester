@@ -39,7 +39,12 @@ public class UnitTestMain {
 	    public void run() {
 		UnitTestGui gui = new UnitTestGui("MyUnitTester");
 		gui.show();
-		new UnitTestController(gui);
+		try{
+			new UnitTestController(gui);
+		}catch(Exception e){
+			System.out.println("Houston we got a problem");
+		}
+		
 	    }
 	});
     }

@@ -39,7 +39,7 @@ import view.UnitTestGui;
  *
  */
 public class UnitTestController {
-
+	
     private UnitTestGui gui;
     private UnitTest tester;
 
@@ -54,68 +54,90 @@ public class UnitTestController {
      * @param gui instance of UnitTestGui
      */
     public UnitTestController(UnitTestGui gui) {
-	this.gui = gui;
+    	this.gui = gui;
+    	
+    	gui.getRunButton().addActionListener(new ActionListener() {
+    		
+    		public void actionPerformed(ActionEvent e) {
+    			runButtonPressed();	
+    		}
+    		
+    	});
 
-	gui.getRunButton().addActionListener(new ActionListener() {
-
-	    public void actionPerformed(ActionEvent e) {
-		runButtonPressed();
-	    }
-
-	});
-
-	gui.getClearButton().addActionListener(new ActionListener() {
-
-	    public void actionPerformed(ActionEvent e) {
-		clearButtonPressed();
-	    }
-
-	});
-
+	
+    	gui.getClearButton().addActionListener(new ActionListener() {
+    		public void actionPerformed(ActionEvent e) {
+    			clearButtonPressed();
+    			}
+    		});	
     }
 
     /**
      * runButtonPressed
      * 
-     * This method instantiates a UnitTest object, and commands
-     * verification, and testing of the method received from the
+     * This method instantiates a UnitTest object, and invokes
+     * verification, and testing using the test class received from the
      * graphical user interface.
      * 
      */
     protected void runButtonPressed() {
-	ArrayList<String> messages = new ArrayList<String>();
-
-	try {
-	    tester = new UnitTest(gui.getTextField().getText());
-	} catch (ClassNotFoundException e) {
-	    messages.add("This test does not exist.\n");
-	}
+    	ArrayList<String> messages = new ArrayList<String>();
+    	
+    	try {
+    		tester = new UnitTest(gui.getTextField().getText());
+    	} catch (ClassNotFoundException e) {    
+    		messages.add("This test does not exist.\n");	
+    	}
 	
-	if(!messages.isEmpty()){
-	    for (String element : messages) {
-		    gui.getTextArea().append(element);
-		}
-	    messages.clear();
-	    return;
-	}
+	
+    	if(!messages.isEmpty()){
+    		this.textOutput(messages);
+    		messages.clear();    
+    		return;
+	
+    	}
 
-	messages = tester.verifyTestClass();
-	if(!messages.isEmpty()){
-	    for (String element : messages) {
-		    gui.getTextArea().append(element);
-		}
-	    messages.clear();
-	    return;
-	}
-	messages = tester.runTestClass();
-	for (String element : messages) {
-	    gui.getTextArea().append(element);
-	}
-
+	
+    	/* 
+    	 *  if verifyTestClass returns null, no error occurred,
+    	 *  hence the program continues
+    	 */
+    	messages = tester.verifyTestClass();
+	
+    	if(!messages.isEmpty()){
+    		this.textOutput(messages);
+    		messages.clear();
+    		return;
+    	}
+	
+    	messages = tester.runTestClass();
+    	this.textOutput(messages);
     }
 
+    /**
+     * clearButtonPressed
+     * 
+     * method that is called from the clearButton
+     * event handler. It sets the text in the gui 
+     * TextArea to null. 
+     */
     protected void clearButtonPressed() {
 	gui.getTextArea().setText(null);
 	
     }
+    
+    /**
+     * 
+     * textOutput
+     * 
+     * Helper method to loop through the message ArrayList
+     * and write each entry to the gui's TextArea
+     * 
+     */
+    protected void textOutput(ArrayList<String> messages){
+    	for (String element : messages) {
+    	    gui.getTextArea().append(element);
+    	}
+    }
+    
 }
