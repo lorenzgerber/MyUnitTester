@@ -25,7 +25,13 @@ import javax.swing.*;
 
 /**
  * 
+ * UnitTestGui
+ * 
+ * Graphical User Interface for the UnitTest application. The class does not
+ * provide any model logic or action listeners.
+ * 
  * @author Lorenz Gerber
+ * @version 1.0
  *
  */
 public class UnitTestGui {
@@ -44,6 +50,11 @@ public class UnitTestGui {
     private JScrollPane scrollPane;
 
     /**
+     * 
+     * UnitTestGui
+     * 
+     * The constructor takes a string as argument which will be displayed as the
+     * main window title.
      * 
      * @param title
      */
@@ -64,6 +75,10 @@ public class UnitTestGui {
 
     /**
      * 
+     * show
+     * 
+     * Internal method to show the constructed GUI on the screen
+     * 
      */
     public void show() {
 	frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
@@ -72,29 +87,43 @@ public class UnitTestGui {
 
     /**
      * 
-     * @return
+     * builLowerPanel
+     * 
+     * Internal method to build the lowermost of three panels.
+     * 
+     * @return JPanel object of the lowermost panel
      */
     private JPanel buildLowerPanel() {
 	lowerPanel = new JPanel();
 	lowerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+
 	clearButton = new JButton("Clear");
 	lowerPanel.add(clearButton);
+
 	return lowerPanel;
     }
 
     /**
      * 
-     * @return
+     * buildMiddlePanel
+     * 
+     * Internal method to build the middle of three panels.
+     * 
+     * @return JPanel object of the middle panel
      */
     private JPanel buildMiddlePanel() {
 	middlePanel = new JPanel();
 	middlePanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+
 	consoleOutput = new JTextArea(20, 30);
 	consoleOutput.setLineWrap(true);
 	consoleOutput.setEditable(false);
+
 	scrollPane = new JScrollPane(consoleOutput);
-	scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-	scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+	scrollPane.setHorizontalScrollBarPolicy(
+		ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+	scrollPane.setVerticalScrollBarPolicy(
+		ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 	middlePanel.add(scrollPane);
 
 	return middlePanel;
@@ -102,48 +131,72 @@ public class UnitTestGui {
 
     /**
      * 
-     * @return
+     * buildUpperPanel
+     * 
+     * Internal method to build the uppermost of three panels.
+     * 
+     * @return JPanel object of the uppermost panel
      */
     private JPanel buildUpperPanel() {
 	upperPanel = new JPanel();
 	upperPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 	selectedText = new JTextField("AccountTest", 20);
 	runButton = new JButton("Run Tests");
-
 	upperPanel.add(selectedText);
 	upperPanel.add(runButton);
+
 	return upperPanel;
     }
 
     /**
      * 
-     * @return
+     * getRunButton
+     * 
+     * Helper method that returns the runButton element.
+     * 
+     * @return JButton element for Run Button
      */
     public JButton getRunButton() {
+
 	return this.runButton;
     }
 
     /**
      * 
-     * @return
+     * getClearButton
+     * 
+     * Helper method that returns the clearButton element.
+     * 
+     * @return JButton element for Clear Button
      */
     public JButton getClearButton() {
+
 	return this.clearButton;
     }
 
     /**
      * 
-     * @return
+     * getTextField
+     * 
+     * Helper method that returns the TextField.
+     * 
+     * @return JTextField element
      */
     public JTextField getTextField() {
+
 	return this.selectedText;
     }
 
     /**
      * 
-     * @return
+     * getTextArea
+     * 
+     * Helper method that returns the TextArea element.
+     * 
+     * @return JTextArea element
      */
     public JTextArea getTextArea() {
+
 	return this.consoleOutput;
     }
 

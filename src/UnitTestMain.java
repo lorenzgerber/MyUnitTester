@@ -36,16 +36,17 @@ public class UnitTestMain {
     public static void main(String args[]) {
 
 	SwingUtilities.invokeLater(new Runnable() {
+
 	    @Override
 	    public void run() {
 		UnitTestGui gui = new UnitTestGui("MyUnitTester");
 		gui.show();
+
 		try {
 		    new UnitTestController(gui);
 		} catch (Exception e) {
 		    System.out.println("Houston we got a problem");
 		}
-
 	    }
 	});
     }

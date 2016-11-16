@@ -76,6 +76,7 @@ public class BankAccount {
      * @return int balance
      */
     public int balance() {
+
 	return balance;
     }
 

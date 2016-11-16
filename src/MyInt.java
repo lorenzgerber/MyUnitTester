@@ -26,6 +26,7 @@
  * 
  */
 public class MyInt {
+
     private int val;
 
     public MyInt() {
@@ -41,6 +42,7 @@ public class MyInt {
     }
 
     public int value() {
+
 	return val;
     }
 

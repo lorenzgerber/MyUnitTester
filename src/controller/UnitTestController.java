@@ -104,7 +104,6 @@ public class UnitTestController {
 	    messages.clear();
 	    return;
 	}
-
 	messages = tester.runTestClass();
 	this.textOutput(messages);
     }
@@ -129,9 +128,9 @@ public class UnitTestController {
      * 
      */
     protected void textOutput(ArrayList<String> messages) {
+
 	for (String element : messages) {
 	    gui.getTextArea().append(element);
 	}
     }
-
 }

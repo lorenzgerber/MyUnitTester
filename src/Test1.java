@@ -43,6 +43,7 @@ public class Test1 implements TestClass {
 
     // Test that should succeed
     public boolean testInitialisation() {
+
 	return myInt.value() == 0;
     }
 
@@ -50,14 +51,15 @@ public class Test1 implements TestClass {
     public boolean testIncrement() {
 	myInt.increment();
 	myInt.increment();
-	return myInt.value() == 2;
 
+	return myInt.value() == 2;
     }
 
     // Test that should succeed
     public boolean testDecrement() {
 	myInt.increment();
 	myInt.decrement();
+
 	return myInt.value() == 0;
     }
 
@@ -65,14 +67,13 @@ public class Test1 implements TestClass {
     public boolean testFailingByException() {
 	myInt = null;
 	myInt.decrement();
-	return true;
 
+	return true;
     }
 
     // Test that should fail
     public boolean testFailing() {
+
 	return false;
-
     }
-
 }

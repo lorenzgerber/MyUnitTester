@@ -75,7 +75,6 @@ public class UnitTest {
      * @return ArrayList with occurred problems
      */
     public ArrayList<String> verifyTestClass() {
-
 	boolean implementsTestClass = false;
 	boolean hasZeroArgConstructor = false;
 
@@ -87,12 +86,11 @@ public class UnitTest {
 	}
 
 	try {
+
 	    if (testClass.getConstructor() != null) {
 		hasZeroArgConstructor = true;
 	    }
-
 	} catch (NoSuchMethodException e) {
-
 	    messages.add(
 		    "Class to be tested has no zero argument constructor.\n");
 	}
@@ -109,6 +107,7 @@ public class UnitTest {
 		hasTearDown = true;
 	    }
 	}
+
 	return messages;
     }
 
@@ -148,12 +147,10 @@ public class UnitTest {
 			messages.add("Success: \""
 				+ testClassMethods[i].getName() + "\"\n");
 		    } else {
-
 			messages.add("Failed: \""
 				+ testClassMethods[i].getName() + "\"\n");
 		    }
 		} catch (Exception e) {
-
 		    messages.add("Failed: \"" + testClassMethods[i].getName()
 			    + "\":\n");
 		    messages.add(e.getCause().toString() + "\n");
@@ -164,6 +161,7 @@ public class UnitTest {
 		}
 	    }
 	}
+
 	return messages;
     }
 
@@ -175,6 +173,7 @@ public class UnitTest {
      * 
      */
     public void setUp() {
+
 	try {
 	    testClass.getMethod("setUp").invoke(classInstance);
 	} catch (Exception e) {
@@ -192,6 +191,7 @@ public class UnitTest {
      * 
      */
     public void tearDown() {
+
 	try {
 	    testClass.getMethod("tearDown").invoke(classInstance);
 	} catch (Exception e) {

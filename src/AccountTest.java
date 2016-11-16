@@ -65,6 +65,7 @@ public class AccountTest implements TestClass {
      * @return boolean test pass or fail
      */
     public boolean testInitialisation() {
+
 	return testAccount.balance() == 0;
     }
 
@@ -78,8 +79,8 @@ public class AccountTest implements TestClass {
      */
     public boolean testDeposit() {
 	testAccount.deposit(100);
-	return testAccount.balance() == 100;
 
+	return testAccount.balance() == 100;
     }
 
     /**
@@ -94,6 +95,7 @@ public class AccountTest implements TestClass {
     public boolean testWithdraw() {
 	testAccount.deposit(100);
 	testAccount.withdraw(100);
+
 	return testAccount.balance() == 0;
     }
 
@@ -109,6 +111,7 @@ public class AccountTest implements TestClass {
 	testAccount.deposit(100);
 	testAccount.setInterest(5);
 	testAccount.addInterest();
+
 	return testAccount.balance() == 105;
     }
 
@@ -122,6 +125,7 @@ public class AccountTest implements TestClass {
      */
     public boolean testOverdraft() {
 	testAccount.withdraw(100);
+
 	return testAccount.balance() < 0;
     }
 
@@ -139,8 +143,7 @@ public class AccountTest implements TestClass {
     public boolean testFailingByException() {
 	testAccount = null;
 	testAccount.deposit(100);
+
 	return true;
-
     }
-
 }
