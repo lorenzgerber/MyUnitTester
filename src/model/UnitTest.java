@@ -44,6 +44,8 @@ public class UnitTest {
     private boolean hasSetUp = false;
     private boolean hasTearDown = false;
     private ArrayList<String> messages = new ArrayList<String>();
+    private int succeeded = 0;
+    private int failed = 0;
 
     /**
      * 
@@ -80,9 +82,13 @@ public class UnitTest {
 
 	for (int i = 0; i < testClassInterfaces.length; i++) {
 
-	    if (testClassInterfaces[i].getName().equals("TestClass")) {
+	    if (testClassInterfaces[i].getName().equals("model.TestClass")) {
 		implementsTestClass = true;
 	    }
+	}
+	
+	if(!implementsTestClass){
+	    messages.add("Class does not implement TestClass interface");
 	}
 
 	try {
@@ -144,6 +150,7 @@ public class UnitTest {
 		    if ((boolean) testClass
 			    .getMethod(testClassMethods[i].getName())
 			    .invoke(classInstance)) {
+			succeeded++;
 			messages.add("Success: \""
 				+ testClassMethods[i].getName() + "\"\n");
 		    } else {
@@ -151,6 +158,7 @@ public class UnitTest {
 				+ testClassMethods[i].getName() + "\"\n");
 		    }
 		} catch (Exception e) {
+		    failed++;
 		    messages.add("Failed: \"" + testClassMethods[i].getName()
 			    + "\":\n");
 		    messages.add(e.getCause().toString() + "\n");
@@ -161,7 +169,8 @@ public class UnitTest {
 		}
 	    }
 	}
-
+	this.addTestSummaryToMessageBuffer();
+	
 	return messages;
     }
 
@@ -198,5 +207,26 @@ public class UnitTest {
 	    messages.add("Tear down method failed.\n");
 	    messages.add(e.getCause().toString() + "\n");
 	}
+    }
+ 
+    /**
+     * 
+     * addTestSummaryToMessageBuffer
+     * 
+     * This method constructs strings that express number
+     * of succeeded and number of failed tests, then adds
+     * the strings to the message buffer.
+     * 
+     */
+    public void addTestSummaryToMessageBuffer(){
+	
+	StringBuilder sbSuccess = new StringBuilder(15);
+	sbSuccess.append("\nTests Succeeded: ");
+	messages.add(sbSuccess.append(Integer.toString(succeeded)).toString()+"\n");
+	
+	StringBuilder sbFailed = new StringBuilder(15);
+	sbFailed.append("Test Failed: ");
+	messages.add(sbFailed.append(Integer.toString(failed)).toString()+"\n");
+		
     }
 }

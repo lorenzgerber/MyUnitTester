@@ -17,32 +17,20 @@
  * along with UnitTest.  If not, see <http://www.gnu.org/licenses/>.
  * 
  */
-import javax.swing.SwingUtilities;
-import controller.UnitTestController;
-import view.UnitTestGui;
 
 /**
- * UnitTestMain
  * 
- * This file contains a main method to run the java class UnitTest with a
- * graphical user interface.
+ * Test2 is a test class used for JUnit tests
  * 
- * @author Lorenz Gerber
- * @version 1.0
- *
+ * This class does not import the TestClass interface,
+ * and it has no zero arg constructor, hence it should 
+ * fail.
+ * 
  */
-public class UnitTestMain {
+public class Test2 {
+    private MyInt myInt;
 
-    public static void main(String args[]) {
-
-	SwingUtilities.invokeLater(new Runnable() {
-
-	    @Override
-	    public void run() {
-		UnitTestGui gui = new UnitTestGui("MyUnitTester");
-		gui.show();
-		new UnitTestController(gui);
-	    }
-	});
+    public Test2() {
     }
+
 }
